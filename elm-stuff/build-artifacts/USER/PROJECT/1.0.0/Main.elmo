@@ -1,0 +1,117 @@
+Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   $moduleName = "Main",
+   $Basics = Elm.Basics.make(_elm),
+   $Color = Elm.Color.make(_elm),
+   $Graphics$Collage = Elm.Graphics.Collage.make(_elm),
+   $Graphics$Element = Elm.Graphics.Element.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Random = Elm.Random.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Time = Elm.Time.make(_elm);
+   var dotForm = function (pos) {
+      return $Graphics$Collage.rotate($Basics.degrees(45))($Graphics$Collage.move(pos)(A2($Graphics$Collage.filled,
+      $Color.blue,
+      A2($Graphics$Collage.ngon,
+      4,
+      1))));
+   };
+   var scene = function (pos) {
+      return $Graphics$Element.layers(_L.fromArray([A3($Graphics$Collage.collage,
+      600,
+      600,
+      A2($List.map,dotForm,pos))]));
+   };
+   var display = F2(function (pos,
+   test) {
+      return A3($Graphics$Collage.collage,
+      600,
+      600,
+      _L.fromArray([dotForm(pos)]));
+   });
+   var walk = F2(function (choice,
+   _v0) {
+      return function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return _U.eq(choice,
+              0) ? {ctor: "_Tuple2"
+                   ,_0: _v0._0 + 3
+                   ,_1: _v0._1} : _U.eq(choice,
+              1) ? {ctor: "_Tuple2"
+                   ,_0: _v0._0 - 3
+                   ,_1: _v0._1} : _U.eq(choice,
+              2) ? {ctor: "_Tuple2"
+                   ,_0: _v0._0
+                   ,_1: _v0._1 + 3} : _U.eq(choice,
+              3) ? {ctor: "_Tuple2"
+                   ,_0: _v0._0
+                   ,_1: _v0._1 - 3} : {ctor: "_Tuple2"
+                                      ,_0: _v0._0
+                                      ,_1: _v0._1};}
+         _U.badCase($moduleName,
+         "between lines 24 and 28");
+      }();
+   });
+   var initialSeeds = A2($Signal._op["<~"],
+   function (time) {
+      return $Random.initialSeed($Basics.round(time));
+   },
+   A3($Signal.foldp,
+   F2(function (x,y) {
+      return x + y;
+   }),
+   0,
+   $Time.fps(200)));
+   var randomInt = function (seed) {
+      return function () {
+         var _ = A2($Random.generate,
+         A2($Random.$int,0,4),
+         seed);
+         var num = function () {
+            switch (_.ctor)
+            {case "_Tuple2": return _._0;}
+            _U.badCase($moduleName,
+            "on line 16, column 18 to 41");
+         }();
+         return num;
+      }();
+   };
+   var randomChoice = A2($Signal._op["<~"],
+   randomInt,
+   initialSeeds);
+   var random_walker_trace = A2($Signal.foldp,
+   F2(function (x,y) {
+      return A2($List._op["::"],
+      x,
+      y);
+   }),
+   _L.fromArray([]))(A3($Signal.foldp,
+   walk,
+   {ctor: "_Tuple2",_0: 0,_1: 0},
+   randomChoice));
+   var main = A2($Signal._op["<~"],
+   scene,
+   random_walker_trace);
+   _elm.Main.values = {_op: _op
+                      ,main: main
+                      ,randomInt: randomInt
+                      ,initialSeeds: initialSeeds
+                      ,randomChoice: randomChoice
+                      ,walk: walk
+                      ,random_walker_trace: random_walker_trace
+                      ,display: display
+                      ,dotForm: dotForm
+                      ,scene: scene};
+   return _elm.Main.values;
+};
