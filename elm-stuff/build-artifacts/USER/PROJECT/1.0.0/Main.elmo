@@ -27,10 +27,10 @@ Elm.Main.make = function (_elm) {
       1))));
    };
    var scene = function (pos) {
-      return $Graphics$Element.layers(_L.fromArray([A3($Graphics$Collage.collage,
+      return A3($Graphics$Collage.collage,
       600,
       600,
-      A2($List.map,dotForm,pos))]));
+      A2($List.map,dotForm,pos));
    };
    var display = F2(function (pos,
    test) {
@@ -60,7 +60,7 @@ Elm.Main.make = function (_elm) {
                                       ,_0: _v0._0
                                       ,_1: _v0._1};}
          _U.badCase($moduleName,
-         "between lines 24 and 28");
+         "between lines 21 and 25");
       }();
    });
    var initialSeeds = A2($Signal._op["<~"],
@@ -72,7 +72,7 @@ Elm.Main.make = function (_elm) {
       return x + y;
    }),
    0,
-   $Time.fps(200)));
+   $Time.fps(1000)));
    var randomInt = function (seed) {
       return function () {
          var _ = A2($Random.generate,
@@ -82,7 +82,7 @@ Elm.Main.make = function (_elm) {
             switch (_.ctor)
             {case "_Tuple2": return _._0;}
             _U.badCase($moduleName,
-            "on line 16, column 18 to 41");
+            "on line 13, column 18 to 41");
          }();
          return num;
       }();

@@ -1,14 +1,11 @@
 import Graphics.Collage exposing (..)
 import Graphics.Element exposing (..)
-import Color exposing (..)
 import Random exposing (..)
 import Signal exposing (..)
-import Time exposing (..)
-import Date exposing (..)
-import List exposing (..)
-import Mouse exposing (..)
+import Time exposing (fps)
+import Color exposing (blue)
 
---main :  Element
+main :  Signal Element
 main = scene <~ random_walker_trace
 
 -- Random
@@ -16,7 +13,7 @@ randomInt seed =
   let (num, _) = generate (int 0 4) seed
   in num
 initialSeeds = 
-  (\(time) -> Random.initialSeed (round time)) <~ (foldp (+) 0 (fps 200))
+  (\(time) -> Random.initialSeed (round time)) <~ (foldp (+) 0 (fps 1000))
 randomChoice = randomInt <~ initialSeeds
 
 walk : Int -> (Float, Float)  -> (Float, Float)
@@ -38,9 +35,6 @@ dotForm pos = filled blue (ngon 4 1) |> move pos |> rotate (degrees 45)
 
 
 scene : List (Float,Float) -> Element
-scene pos =
-    layers
-    [ collage 600 600 (List.map dotForm pos)
-    ]
+scene pos = collage 600 600 (List.map dotForm pos)
         
 

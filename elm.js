@@ -628,84 +628,6 @@ Elm.Color.make = function (_elm) {
                        ,darkGray: darkGray};
    return _elm.Color.values;
 };
-Elm.Date = Elm.Date || {};
-Elm.Date.make = function (_elm) {
-   "use strict";
-   _elm.Date = _elm.Date || {};
-   if (_elm.Date.values)
-   return _elm.Date.values;
-   var _op = {},
-   _N = Elm.Native,
-   _U = _N.Utils.make(_elm),
-   _L = _N.List.make(_elm),
-   $moduleName = "Date",
-   $Native$Date = Elm.Native.Date.make(_elm),
-   $Result = Elm.Result.make(_elm),
-   $Time = Elm.Time.make(_elm);
-   var millisecond = $Native$Date.millisecond;
-   var second = $Native$Date.second;
-   var minute = $Native$Date.minute;
-   var hour = $Native$Date.hour;
-   var dayOfWeek = $Native$Date.dayOfWeek;
-   var day = $Native$Date.day;
-   var month = $Native$Date.month;
-   var year = $Native$Date.year;
-   var fromTime = $Native$Date.fromTime;
-   var toTime = $Native$Date.toTime;
-   var fromString = $Native$Date.read;
-   var Dec = {ctor: "Dec"};
-   var Nov = {ctor: "Nov"};
-   var Oct = {ctor: "Oct"};
-   var Sep = {ctor: "Sep"};
-   var Aug = {ctor: "Aug"};
-   var Jul = {ctor: "Jul"};
-   var Jun = {ctor: "Jun"};
-   var May = {ctor: "May"};
-   var Apr = {ctor: "Apr"};
-   var Mar = {ctor: "Mar"};
-   var Feb = {ctor: "Feb"};
-   var Jan = {ctor: "Jan"};
-   var Sun = {ctor: "Sun"};
-   var Sat = {ctor: "Sat"};
-   var Fri = {ctor: "Fri"};
-   var Thu = {ctor: "Thu"};
-   var Wed = {ctor: "Wed"};
-   var Tue = {ctor: "Tue"};
-   var Mon = {ctor: "Mon"};
-   var Date = {ctor: "Date"};
-   _elm.Date.values = {_op: _op
-                      ,fromString: fromString
-                      ,toTime: toTime
-                      ,fromTime: fromTime
-                      ,year: year
-                      ,month: month
-                      ,day: day
-                      ,dayOfWeek: dayOfWeek
-                      ,hour: hour
-                      ,minute: minute
-                      ,second: second
-                      ,millisecond: millisecond
-                      ,Jan: Jan
-                      ,Feb: Feb
-                      ,Mar: Mar
-                      ,Apr: Apr
-                      ,May: May
-                      ,Jun: Jun
-                      ,Jul: Jul
-                      ,Aug: Aug
-                      ,Sep: Sep
-                      ,Oct: Oct
-                      ,Nov: Nov
-                      ,Dec: Dec
-                      ,Mon: Mon
-                      ,Tue: Tue
-                      ,Wed: Wed
-                      ,Thu: Thu
-                      ,Fri: Fri
-                      ,Sat: Sat
-                      ,Sun: Sun};
-   return _elm.Date.values;
-};
 Elm.Debug = Elm.Debug || {};
 Elm.Debug.make = function (_elm) {
    "use strict";
@@ -2004,10 +1926,10 @@ Elm.Main.make = function (_elm) {
       1))));
    };
    var scene = function (pos) {
-      return $Graphics$Element.layers(_L.fromArray([A3($Graphics$Collage.collage,
+      return A3($Graphics$Collage.collage,
       600,
       600,
-      A2($List.map,dotForm,pos))]));
+      A2($List.map,dotForm,pos));
    };
    var display = F2(function (pos,
    test) {
@@ -2037,7 +1959,7 @@ Elm.Main.make = function (_elm) {
                                       ,_0: _v0._0
                                       ,_1: _v0._1};}
          _U.badCase($moduleName,
-         "between lines 24 and 28");
+         "between lines 21 and 25");
       }();
    });
    var initialSeeds = A2($Signal._op["<~"],
@@ -2049,7 +1971,7 @@ Elm.Main.make = function (_elm) {
       return x + y;
    }),
    0,
-   $Time.fps(200)));
+   $Time.fps(1000)));
    var randomInt = function (seed) {
       return function () {
          var _ = A2($Random.generate,
@@ -2059,7 +1981,7 @@ Elm.Main.make = function (_elm) {
             switch (_.ctor)
             {case "_Tuple2": return _._0;}
             _U.badCase($moduleName,
-            "on line 16, column 18 to 41");
+            "on line 13, column 18 to 41");
          }();
          return num;
       }();
@@ -2164,37 +2086,6 @@ Elm.Maybe.make = function (_elm) {
                        ,Just: Just
                        ,Nothing: Nothing};
    return _elm.Maybe.values;
-};
-Elm.Mouse = Elm.Mouse || {};
-Elm.Mouse.make = function (_elm) {
-   "use strict";
-   _elm.Mouse = _elm.Mouse || {};
-   if (_elm.Mouse.values)
-   return _elm.Mouse.values;
-   var _op = {},
-   _N = Elm.Native,
-   _U = _N.Utils.make(_elm),
-   _L = _N.List.make(_elm),
-   $moduleName = "Mouse",
-   $Basics = Elm.Basics.make(_elm),
-   $Native$Mouse = Elm.Native.Mouse.make(_elm),
-   $Signal = Elm.Signal.make(_elm);
-   var clicks = $Native$Mouse.clicks;
-   var isDown = $Native$Mouse.isDown;
-   var position = $Native$Mouse.position;
-   var x = A2($Signal.map,
-   $Basics.fst,
-   position);
-   var y = A2($Signal.map,
-   $Basics.snd,
-   position);
-   _elm.Mouse.values = {_op: _op
-                       ,position: position
-                       ,x: x
-                       ,y: y
-                       ,isDown: isDown
-                       ,clicks: clicks};
-   return _elm.Mouse.values;
 };
 Elm.Native.Basics = {};
 Elm.Native.Basics.make = function(localRuntime) {
@@ -2371,52 +2262,6 @@ Elm.Native.Color.make = function(localRuntime) {
 
 	return localRuntime.Native.Color.values = {
 		toCss: toCss
-	};
-
-};
-
-Elm.Native.Date = {};
-Elm.Native.Date.make = function(localRuntime) {
-	localRuntime.Native = localRuntime.Native || {};
-	localRuntime.Native.Date = localRuntime.Native.Date || {};
-	if (localRuntime.Native.Date.values)
-	{
-		return localRuntime.Native.Date.values;
-	}
-
-	var Result = Elm.Result.make(localRuntime);
-
-	function dateNow()
-	{
-		return new window.Date;
-	}
-
-	function readDate(str)
-	{
-		var date = new window.Date(str);
-		return isNaN(date.getTime())
-			? Result.Err("unable to parse '" + str + "' as a date")
-			: Result.Ok(date);
-	}
-
-	var dayTable = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-	var monthTable =
-		["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-		 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-
-	return localRuntime.Native.Date.values = {
-		read    : readDate,
-		year    : function(d) { return d.getFullYear(); },
-		month   : function(d) { return { ctor:monthTable[d.getMonth()] }; },
-		day     : function(d) { return d.getDate(); },
-		hour    : function(d) { return d.getHours(); },
-		minute  : function(d) { return d.getMinutes(); },
-		second  : function(d) { return d.getSeconds(); },
-		millisecond: function (d) { return d.getMilliseconds(); },
-		toTime  : function(d) { return d.getTime(); },
-		fromTime: function(t) { return new window.Date(t); },
-		dayOfWeek : function(d) { return { ctor:dayTable[d.getDay()] }; }
 	};
 
 };
@@ -4089,50 +3934,6 @@ Elm.Native.List.make = function(localRuntime) {
 	};
 	return localRuntime.Native.List.values = Elm.Native.List.values;
 
-};
-
-Elm.Native = Elm.Native || {};
-Elm.Native.Mouse = {};
-Elm.Native.Mouse.make = function(localRuntime) {
-
-	localRuntime.Native = localRuntime.Native || {};
-	localRuntime.Native.Mouse = localRuntime.Native.Mouse || {};
-	if (localRuntime.Native.Mouse.values)
-	{
-		return localRuntime.Native.Mouse.values;
-	}
-
-	var NS = Elm.Native.Signal.make(localRuntime);
-	var Utils = Elm.Native.Utils.make(localRuntime);
-
-	var position = NS.input('Mouse.position', Utils.Tuple2(0,0));
-
-	var isDown = NS.input('Mouse.isDown', false);
-
-	var clicks = NS.input('Mouse.clicks', Utils.Tuple0);
-
-	var node = localRuntime.isFullscreen()
-		? document
-		: localRuntime.node;
-
-	localRuntime.addListener([clicks.id], node, 'click', function click() {
-		localRuntime.notify(clicks.id, Utils.Tuple0);
-	});
-	localRuntime.addListener([isDown.id], node, 'mousedown', function down() {
-		localRuntime.notify(isDown.id, true);
-	});
-	localRuntime.addListener([isDown.id], node, 'mouseup', function up() {
-		localRuntime.notify(isDown.id, false);
-	});
-	localRuntime.addListener([position.id], node, 'mousemove', function move(e) {
-		localRuntime.notify(position.id, Utils.getXY(e));
-	});
-
-	return localRuntime.Native.Mouse.values = {
-		position: position,
-		isDown: isDown,
-		clicks: clicks
-	};
 };
 
 Elm.Native.Port = {};
